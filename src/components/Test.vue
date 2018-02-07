@@ -33,7 +33,7 @@
 
         },
         //lifecycle hooks
-        beforeCreate(){
+        /*beforeCreate(){
             alert('beforeCreate');
         },
         created(){
@@ -50,7 +50,7 @@
         },
         updated(){
             alert('updated');
-        }
+        }*/
     }
 </script>
 <style scoped>

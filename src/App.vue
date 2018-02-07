@@ -6,7 +6,34 @@
     <app-user></app-user>
     <app-heder v-bind:title="title" v-on:changeTitle="updateTitle($event)"></app-heder>
     <app-tests v-bind:ninjas="ninja"></app-tests>
+    <form-helper>
+      <h1 slot="top">insert tag slots top</h1>
+      <h1 slot="down">insert tag slots down</h1>
+      <div slot="form-header">
+        <h3>this is the title of form</h3>
+        <p>Information about the form</p>
+      </div>
+      <div slot="form-fields">
+        <input type="text" placeholder="name" required value="">
+        <input type="password" placeholder="password"required value="">
+      </div>
+      <div slot="form-controls">
+        <button v-on:click="handleSubmit">handle Submit</button>
+      </div>
+    </form-helper>
+
+    <form-one></form-one>
+    <keep-alive>
+      <component v-bind:is="component"></component>
+    </keep-alive>
+    
+    
+    <button v-on:click="component='form-one'">Button form one</button>
+    <button v-on:click="component='form-two'">Button form two</button>
+      
+      <add-blog></add-blog>
     <app-footer v-bind:title="title"></app-footer>
+
   </div>
 </template>
 
@@ -18,6 +45,10 @@ import User from './components/User.vue';
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
 import Test from './components/Test.vue';
+import FormHelper from './components/FormHelper.vue';
+import FormOne from './components/FormOne.vue';
+import FormTwo from './components/FormTwo.vue';
+import AddBlog from './components/AddBlog.vue';
     export default {
       data() {
             return {
@@ -29,19 +60,28 @@ import Test from './components/Test.vue';
         {name: 'Kami', specialty: 'Webpack', show: false},
         {name: 'Yoshi', specialty: 'Data Diggin', show: false}
       ]﻿,
-      title:'ahihi title'
+      title:'ahihi title',
+      component:'form-two'
             }
+            
         },
         components: {
             appUser: User,
             'app-heder':Header,
             'app-footer':Footer,
-            'app-tests':Test
+            'app-tests':Test,
+            'form-helper':FormHelper,
+            'form-one':FormOne,
+            'form-two':FormTwo,
+            'add-blog':AddBlog
         }, 
         methods:{
           updateTitle(updateTitles){
             this.title=updateTitles;
-          }
+          },
+            handleSubmit:function(){
+                alert('thanks for form form');
+            }
         }
     }
 </script>

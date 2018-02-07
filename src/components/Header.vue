@@ -15,7 +15,7 @@ import {eventBus} from '../main.js';
         },
         data() {
             return {
-                title:'View Demo'
+                //title:'View Demo'
             }
         },
         methods:{
