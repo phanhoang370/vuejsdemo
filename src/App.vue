@@ -1,10 +1,8 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <router-view/>
-
-    <app-user></app-user>
     <app-heder v-bind:title="title" v-on:changeTitle="updateTitle($event)"></app-heder>
+    <router-view/>
     <app-tests v-bind:ninjas="ninja"></app-tests>
     <form-helper>
       <h1 slot="top">insert tag slots top</h1>
@@ -22,7 +20,7 @@
       </div>
     </form-helper>
 
-    <form-one></form-one>
+  
     <keep-alive>
       <component v-bind:is="component"></component>
     </keep-alive>
@@ -31,7 +29,7 @@
     <button v-on:click="component='form-one'">Button form one</button>
     <button v-on:click="component='form-two'">Button form two</button>
       
-      <add-blog></add-blog>
+     
     <app-footer v-bind:title="title"></app-footer>
 
   </div>
@@ -48,7 +46,9 @@ import Test from './components/Test.vue';
 import FormHelper from './components/FormHelper.vue';
 import FormOne from './components/FormOne.vue';
 import FormTwo from './components/FormTwo.vue';
-import AddBlog from './components/AddBlog.vue';
+// import AddBlog from './components/AddBlog.vue';
+// import ShowBlogs from './components/ShowBlogs.vue';
+// import ListBlog from './components/ListBlog.vue';
     export default {
       data() {
             return {
@@ -72,8 +72,10 @@ import AddBlog from './components/AddBlog.vue';
             'app-tests':Test,
             'form-helper':FormHelper,
             'form-one':FormOne,
-            'form-two':FormTwo,
-            'add-blog':AddBlog
+            'form-two':FormTwo
+            // 'add-blog':AddBlog,
+            // 'show-blog':ShowBlogs,
+            // 'list-blog':ListBlog
         }, 
         methods:{
           updateTitle(updateTitles){

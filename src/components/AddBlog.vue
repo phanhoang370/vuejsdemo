@@ -2,7 +2,7 @@
 <template>
     <div id="add-blog">
         <h2>add a new blog post</h2>
-        <form action="AddBlog_submit" method="get" accept-charset="utf-8">
+        <form v-if="!submitted" action="AddBlog_submit" method="get" accept-charset="utf-8">
             <label>blog title</label>
             <input type="text" v-model.lazy="blog.title" required name="">
             <label>blog content:</label>
@@ -19,7 +19,11 @@
            <select v-model="blog.author">
                <option v-for="author in authors">{{author}}</option>      
            </select>
+           <button v-on:click.prevent="post" type="">add blog</button>
         </form>
+        <div v-if="submitted">
+            <h3>thanks for post</h3>
+        </div>
         <div id="preview">
             <h3>preview blog</h3>
             <p>blog title:{{blog.title}}</p>
@@ -45,7 +49,21 @@ import FormHelper from './FormHelper.vue';
                     categories:[],
                     author:""
                 },
-                authors:['Php', 'c#', 'javascrip']
+                authors:['Php', 'c#', 'javascrip'],
+                submitted:false,
+            }
+        }, methods:{
+            post:function(){
+                this.$http.post('https://my-project-1513958937837.firebaseio.com/posts.json', this.blog
+                // {
+                //     title:this.blog.title,
+                //     body:this.blog.content,
+                //     userId:1
+                // }
+                ).then(function(data){
+                    console.log(data);
+                    this.submitted=true;
+                });
             }
         }
     }
