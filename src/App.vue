@@ -3,8 +3,8 @@
     <img src="./assets/logo.png">
     <app-heder v-bind:title="title" v-on:changeTitle="updateTitle($event)"></app-heder>
     <router-view/>
-    <app-tests v-bind:ninjas="ninja"></app-tests>
-    <form-helper>
+<!--     <app-tests v-bind:ninjas="ninja"></app-tests> -->
+    <!-- <form-helper>
       <h1 slot="top">insert tag slots top</h1>
       <h1 slot="down">insert tag slots down</h1>
       <div slot="form-header">
@@ -19,15 +19,15 @@
         <button v-on:click="handleSubmit">handle Submit</button>
       </div>
     </form-helper>
-
+ -->
   
-    <keep-alive>
+    <!-- <keep-alive>
       <component v-bind:is="component"></component>
     </keep-alive>
     
     
     <button v-on:click="component='form-one'">Button form one</button>
-    <button v-on:click="component='form-two'">Button form two</button>
+    <button v-on:click="component='form-two'">Button form two</button> -->
       
      
     <app-footer v-bind:title="title"></app-footer>
@@ -43,7 +43,7 @@ import User from './components/User.vue';
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
 import Test from './components/Test.vue';
-import FormHelper from './components/FormHelper.vue';
+// import FormHelper from './components/FormHelper.vue';
 import FormOne from './components/FormOne.vue';
 import FormTwo from './components/FormTwo.vue';
 // import AddBlog from './components/AddBlog.vue';
@@ -70,7 +70,7 @@ import FormTwo from './components/FormTwo.vue';
             'app-heder':Header,
             'app-footer':Footer,
             'app-tests':Test,
-            'form-helper':FormHelper,
+            // 'form-helper':FormHelper,
             'form-one':FormOne,
             'form-two':FormTwo
             // 'add-blog':AddBlog,

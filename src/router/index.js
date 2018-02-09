@@ -8,26 +8,50 @@ import ListBlog from '@/components/ListBlog'
 import FormOne from '@/components/FormOne'
 import User from '@/components/User'
 import SingleBlog from '@/components/SingleBlog'
+import Login from '@/components/Login'
+import SignUp from'@/components/SignUp.vue'
+import firebase from 'firebase'
 
 
 Vue.use(Router)
+let router = new Router({
+	
+})
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'ShowBlogs',
-      component: ShowBlogs
+      redirect:'/login',
+      name: 'Login',
+      component: Login
     },
+    {
+      path: '/login',
+     
+      name: 'Login',
+      component: Login
+    },
+    // {
+    //   path: '*',
+    //   name: 'Login',
+    //   component: Login
+    // },
     {
     	path: '/add',
       name: 'AddBlog',
-      component: AddBlog
+      component: AddBlog,
+      meta:{
+      	requiresAuth:true
+      }
     },
     {
     	path: '/show',
       name: 'ShowBlogs',
-      component: ShowBlogs
+      component: ShowBlogs,
+      meta:{
+      	requiresAuth:true
+      }
     },
     {
     	path: '/test',
@@ -37,7 +61,10 @@ export default new Router({
     {
     	path: '/list',
       name: 'ListBlog',
-      component: ListBlog
+      component: ListBlog,
+      meta:{
+      	requiresAuth:true
+      }
     },
     {
     	path: '/form-one',
@@ -52,7 +79,25 @@ export default new Router({
     {
     	path: '/blog/:id',
       name: 'SingleBlog',
-      component: SingleBlog
+      component: SingleBlog,
+      meta:{
+      	requiresAuth:true
+      }
+    }
+    ,
+    {
+    	path: '/signup',
+      name: 'SignUp',
+      component: SignUp
     }
   ]
+})
+router.beforeEach((to, from, next)=>{
+	let currentUser=firebase.auth().currentUser;
+	let requiresAuth=to.matched.some(record => record
+		.meta.requiresAuth);
+
+	if(requiresAuth && !currentUser) next('login')
+		else if (!requiresAuth && currentUser) next('hello')
+			else next()
 })

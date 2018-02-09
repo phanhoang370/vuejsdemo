@@ -1,6 +1,6 @@
 {
-  "name": "vuejs",
-  "version": "1.0.0",
+  "name": "vuejsdemo",
+  "version": "2.0.0",
   "description": "test",
   "author": "yes",
   "private": true,
@@ -14,9 +14,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "vue": "^2.5.2",
+    "firebase": "^4.9.1",
+    "vue": "^2.5.13",
     "vue-resource": "^1.3.5",
     "vue-router": "^3.0.1",
+    "vuefire": "^1.4.5",
     "vuetify": "^0.17.7"
   },
   "devDependencies": {
@@ -85,5 +87,17 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "main": "test",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "yes"
+  },
+  "keywords": [
+    "yes"
+  ],
+  "license": "ISC"
 }

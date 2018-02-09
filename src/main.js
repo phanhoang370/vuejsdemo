@@ -6,6 +6,7 @@ import router from './router'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
+import firebase from'firebase'
  
 Vue.use(Vuetify)
 
@@ -17,6 +18,24 @@ Vue.use(VueRouter);
 // 	mode:'history'
 // });
 Vue.config.productionTip = false
+
+
+
+
+	let app;
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBE3eU40Lg6urs_NtLaKe0celliE7s2PhI",
+    authDomain: "my-project-1513958937837.firebaseapp.com",
+    databaseURL: "https://my-project-1513958937837.firebaseio.com",
+    projectId: "my-project-1513958937837",
+    storageBucket: "my-project-1513958937837.appspot.com",
+    messagingSenderId: "532356216650"
+  };
+
+  firebase.initializeApp(config);
+window.firebase=firebase;
+
 //customer directive
 // Vue.directive('rainbow', {
 // 	bind(el, binding, vnode){
@@ -48,15 +67,24 @@ Vue.filter('snippet', function(value){
 export const eventBus = new Vue()
 /*Vue.component('app-demo', Test);*/
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router:router,
-  components: { App },
-  mode:'history',
-  template: '<App/>',
-    data: {
-        message: 'Welcome to Codementor!',
-        test: 'Welcome to Test!',
-    }
+
+firebase.auth().onAuthStateChanged(function(user){
+	if(!app){
+
+		new Vue({
+		  el: '#app',
+		  router:router,
+		  components: { App },
+		  mode:'history',
+		  template: '<App/>',
+		    data: {
+		        message: 'Welcome to Codementor!',
+		        test: 'Welcome to Test!',
+		    }
+		})
+
+	}
 })
+
+
 

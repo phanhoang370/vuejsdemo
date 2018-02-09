@@ -3,19 +3,21 @@
     <header>
         <h1 v-on:click="changeTitle">{{title}}</h1>
         <div id="">
-                <ul>
-                    <li><router-link to="/" exact>Home</router-link></li>
-                    <li><router-link to="/add" exact>Add</router-link></li>
-                    <li><router-link to="/show" exact>Show</router-link></li>
-                    <li><router-link to="/test" exact>Test</router-link></li>
-                    <li><router-link to="/list" exact>List</router-link></li>
-                </ul>
-            </div>
+            <ul>
+                <li><router-link to="/" exact>Home</router-link></li>
+                <li><router-link to="/add" >Add</router-link></li>
+                <li><router-link to="/show" >Show</router-link></li>
+                <li><router-link to="/test" >Test</router-link></li>
+                <li><router-link to="/list" >List</router-link></li>
+            </ul>
+            <button type="" class="logout" v-on:click="logout">Logout</button>
+        </div>
     </header><!-- /header -->
 </template>
 
 <script>
 import {eventBus} from '../main.js';
+import firebase from 'firebase'
     export default {
         props:{
             title:{
@@ -25,6 +27,7 @@ import {eventBus} from '../main.js';
         data() {
             return {
                 //title:'View Demo'
+                msg:'welcome to your view'
             }
         },
         methods:{
@@ -32,6 +35,12 @@ import {eventBus} from '../main.js';
                 this.title="change title";
                 //this.$emit('changeTitle', 'chang title');
                 eventBus.$emit('titleChange', 'change Title');
+            }
+            ,
+            logout(){
+                firebase.auth().signOut().then(() =>{
+                    this.$router.replace('login')
+                })
             }
         }
 
@@ -69,5 +78,8 @@ import {eventBus} from '../main.js';
     }
     .router-link-active {
         background: #eee;
+    }
+    .logout {
+        text-align: center;
     }
 </style>

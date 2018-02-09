@@ -3,7 +3,7 @@
     <div id="test">
         
         <ul>
-            <li v-for="test in ninjas" v-on:click="test.show =!test.show">
+            <li v-for="test in ninja" v-on:click="test.show =!test.show">
                 <h1 >{{test.name}}</h1>
                 <h3 v-show="test.show">{{test.specialty}}
                 </h3>
@@ -16,42 +16,55 @@
 </template>
 
 <script>
-    export default {
-        props:{
-            ninjas:{
-                type:Array,
-                required:true
-            },
-            title:{
-                type:String
-            }
+export default {
+    // props:{
+    //     ninjas:{
+    //         type:Array,
+    //         required:true
+    //     },
+    //     title:{
+    //         type:String
+    //     }
+    // },
+    data() {
+        return {
+            ninja: [
+                {name: 'Ryu', specialty: 'Vue Components', show: false},
+                {name: 'Crystal', specialty: 'HTML Wizardry', show: false},
+                {name: 'Hitoshi', specialty: 'Click Events', show: false},
+                {name: 'Tango', specialty: 'Conditionals', show: false},
+                {name: 'Kami', specialty: 'Webpack', show: false},
+                {name: 'Yoshi', specialty: 'Data Diggin', show: false}
+              ]﻿,
+        }
+        
+    },
+    methods:{
+        deleteNinja:function(){
+            this.ninja.pop();
         },
-        methods:{
-            deleteNinja:function(){
-                this.ninjas.pop();
-            },
 
-        },
-        //lifecycle hooks
-        /*beforeCreate(){
-            alert('beforeCreate');
-        },
-        created(){
-            alert('created');
-        },
-        beforeMount(){
-            alert('beforeMount');
-        },
-        mounted(){
-            alert('mounted');
-        },
-        beforeUpdate(){
-            alert('beforeUpdate');
-        },
-        updated(){
-            alert('updated');
-        }*/
-    }
+    },
+    //lifecycle hooks
+    /*beforeCreate(){
+        alert('beforeCreate');
+    },
+    created(){
+        alert('created');
+    },
+    beforeMount(){
+        alert('beforeMount');
+    },
+    mounted(){
+        alert('mounted');
+    },
+    beforeUpdate(){
+        alert('beforeUpdate');
+    },
+    updated(){
+        alert('updated');
+    }*/
+}
 </script>
 <style scoped>
     #test {

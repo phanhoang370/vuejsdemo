@@ -4,24 +4,6 @@
         <h1>all blog article</h1>
         <input type="text" v-model="search" placeholder="search blogs" name="">
 
-        <template>
-  <v-form v-model="valid">
-    <v-text-field
-      label="Name"
-      v-model="name"
-      :rules="nameRules"
-      :counter="10"
-      required
-    ></v-text-field>
-    <v-text-field
-      label="E-mail"
-      v-model="email"
-      :rules="emailRules"
-      required
-    ></v-text-field>
-  </v-form>
-</template>
-
         <div v-for="blog in filteredBlogs" class="single-blog">
             
             <router-link v-bind:to="'/blog/'+ blog.id"><h3>{{blog.title | to-uppercase}}</h3></router-link>
@@ -45,18 +27,7 @@ import SearchMixin from '../mixins/SearchMixin.js';
         data(){
             return{
                 blogs:[],
-                search:"",
-                valid: false,
-        name: '',
-        nameRules: [
-          (v) => !!v || 'Name is required',
-          (v) => v.length <= 10 || 'Name must be less than 10 characters'
-        ],
-        email: '',
-        emailRules: [
-          (v) => !!v || 'E-mail is required',
-          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
-        ]
+                search:""
             }
         },
         created(){
